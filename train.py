@@ -145,7 +145,7 @@ print("Length Caption validation", len(cap_val))
 
 # Feel free to change these parameters according to your system's configuration
 
-BATCH_SIZE = 64
+image_features_extract_model = 1048 # For Titan RTX
 print("BATCH SIZE:", BATCH_SIZE)
 BUFFER_SIZE = 1000
 embedding_dim = 256
@@ -344,8 +344,8 @@ for epoch in trange(start_epoch, EPOCHS):
     # storing the epoch end loss value to plot later
     loss_plot.append(total_loss / num_steps)
 
-    if epoch % 5 == 0:
-      ckpt_manager.save()
+    #if epoch % 5 == 0:
+    ckpt_manager.save()
 
     print ('Epoch {} Loss {:.6f}'.format(epoch + 1,
                                          total_loss/num_steps))
