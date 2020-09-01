@@ -18,6 +18,11 @@ from PIL import Image
 import pickle
 from tqdm import tqdm, trange
 
+BATCH_SIZE_INCEPTION = 64
+print("BATCH_SIZE_INCEPTION: ", BATCH_SIZE_INCEPTION)
+BATCH_SIZE = 1024
+print("BATCH_SIZE: ", BATCH_SIZE)
+
 print("Download caption annotation files")
 annotation_folder = '/annotations/'
 if not os.path.exists(os.path.abspath('.') + annotation_folder):
@@ -94,7 +99,7 @@ encode_train = sorted(set(img_name_vector))
 # Feel free to change batch_size according to your system configuration
 image_dataset = tf.data.Dataset.from_tensor_slices(encode_train)
 image_dataset = image_dataset.map(
-    load_image, num_parallel_calls=tf.data.experimental.AUTOTUNE).batch(16)
+    load_image, num_parallel_calls=tf.data.experimental.AUTOTUNE).batch(64)
 
 for img, path in tqdm(image_dataset):
     batch_features = image_features_extract_model(img)
@@ -145,7 +150,7 @@ print("Length Caption validation", len(cap_val))
 
 # Feel free to change these parameters according to your system's configuration
 
-image_features_extract_model = 1048 # For Titan RTX
+image_features_extract_model = BATCH_SIZE # For Titan RTX
 print("BATCH SIZE:", BATCH_SIZE)
 BUFFER_SIZE = 1000
 embedding_dim = 256
