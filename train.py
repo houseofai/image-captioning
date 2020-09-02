@@ -19,7 +19,7 @@ import pickle
 from tqdm import tqdm, trange
 
 BATCH_SIZE_INCEPTION = 64
-print("BATCH_SIZE_INCEPTION: ", BATCH_SIZE_INCEPTION)
+print("BATCH_SIZE_INCEPTION: ", BATCH_SIZE_INCEPTION)  ##
 BATCH_SIZE = 1024
 print("BATCH_SIZE: ", BATCH_SIZE)
 
